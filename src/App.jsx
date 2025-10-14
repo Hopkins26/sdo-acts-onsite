@@ -1,11 +1,10 @@
-import { Button } from "@/components/ui/button";
+import Frontend from "./components/ui/frontend";
 
 function App() {
   return (
     <div className="flex min-h-svh flex-col items-center justify-center">
-      <Button>Click Mick</Button>
+      <Frontend />
     </div>
   );
 }
-
 export default App;
