@@ -1,10 +1,12 @@
-import Frontend from "./components/ui/frontend";
+import React from "react";
+import LoginPage from "@/pages/LoginPage";
 
 function App() {
   return (
-    <div className="flex min-h-svh flex-col items-center justify-center">
-      <Frontend />
+    <div className="flex min-h-screen flex-col items-center justify-center">
+      <LoginPage />
     </div>
   );
 }
+
 export default App;
