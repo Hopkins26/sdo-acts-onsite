@@ -4,95 +4,118 @@ import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Checkbox } from "@/components/ui/checkbox";
 import { Label } from "@/components/ui/label";
-import { Mail, Lock } from "lucide-react"; // 
+import { Mail, Lock } from "lucide-react";
+import { useNavigate } from "react-router-dom";
+
+// ✅ Import your assets
+import bgImage from "@/assets/SDO Background.png";
+import logo from "@/assets/SDO logo.png";
 
 export default function LoginPage() {
+  const navigate = useNavigate();
+
+  const handleLogin = (e) => {
+    e.preventDefault();
+    navigate("/create-ticket"); // Temporary redirect
+  };
+
   return (
-    <div className="flex items-center justify-center min-h-screen w-screen bg-gray-100">
-      <div className="flex flex-col md:flex-row w-full h-screen bg-white rounded-none shadow-lg overflow-hidden">
-        {/* Left side - 60% */}
-        <div className="hidden md:flex w-[60%] relative bg-green-800 text-white">
-          <img
-            src="/sdo-bg.jpg"
-            alt="SDO Meycauayan"
-            className="object-cover w-full h-full opacity-50"
-          />
-          <div className="absolute inset-0 bg-green-900/60" />
-          <div className="absolute inset-0 flex flex-col justify-end p-12 z-10">
-            <h1 className="text-5xl font-bold">SDO-ACTS</h1>
-            <p className="text-lg mt-2">
-              A Centralized Ticketing System for SDO Meycauayan
-            </p>
-          </div>
+    <div className="flex h-screen w-screen overflow-hidden">
+      {/* Left side - 60% */}
+      <div className="relative w-[60%] bg-green-800 text-white flex items-end">
+        {/* Background image */}
+        <img
+          src={bgImage}
+          alt="SDO Meycauayan"
+          className="absolute inset-0 object-cover w-[115%] h-full translate-x- opacity-60"
+        />
+        {/* Green overlay */}
+        <div className="absolute inset-0 bg-green-900/60" />
+        {/* Text content */}
+        <div className="relative z-10 p-14">
+          <h1 className="text-6xl font-extrabold tracking-wide">SDO-ACTS</h1>
+          <p className="text-2xl mt-3 leading-snug">
+            A Centralized Ticketing System for <br />
+            SDO Meycauayan
+          </p>
         </div>
+      </div>
 
-        {/* Right side - 40% */}
-        <div className="w-full md:w-[40%] flex items-center justify-center p-10 bg-white">
-          <Card className="w-full max-w-sm border-none shadow-none">
-            <CardHeader className="text-center">
-              <img
-                src="/sdo-logo.png"
-                alt="SDO Logo"
-                className="mx-auto mb-4 h-16 w-16"
-              />
-              <CardTitle className="text-2xl font-bold text-green-800">
-                Welcome!
-              </CardTitle>
-            </CardHeader>
-            <CardContent>
-              <form className="space-y-4">
-                {/* Email Input with Icon */}
-                <div className="space-y-2">
-                  <Label htmlFor="email">Email Address</Label>
-                  <div className="relative">
-                    <Mail className="absolute left-3 top-1/2 -translate-y-1/2 text-gray-400 w-5 h-5" />
-                    <Input
-                      id="email"
-                      type="email"
-                      placeholder="Enter your email"
-                      className="pl-10"
-                    />
-                  </div>
+      {/* Right side - 40% */}
+      <div className="w-[40%] flex items-center justify-center bg-white p-12">
+        <Card className="w-full max-w-sm border-none shadow-none">
+          <CardHeader className="text-center">
+            <img src={logo} alt="SDO Logo" className="mx-auto mb-6 h-28 w-28" />
+            <CardTitle className="text-3xl font-bold text-green-800">
+              Welcome!
+            </CardTitle>
+          </CardHeader>
+          <CardContent>
+            <form className="space-y-5" onSubmit={handleLogin}>
+              {/* Email Input */}
+              <div className="space-y-2">
+                <Label htmlFor="email" className="text-base">
+                  Email Address
+                </Label>
+                <div className="relative">
+                  <Mail className="absolute left-3 top-1/2 -translate-y-1/2 text-gray-400 w-5 h-5" />
+                  <Input
+                    id="email"
+                    type="email"
+                    placeholder="Enter your email"
+                    className="pl-10 text-base py-6"
+                  />
                 </div>
+              </div>
 
-                {/* Password Input with Icon */}
-                <div className="space-y-2">
-                  <Label htmlFor="password">Password</Label>
-                  <div className="relative">
-                    <Lock className="absolute left-3 top-1/2 -translate-y-1/2 text-gray-400 w-5 h-5" />
-                    <Input
-                      id="password"
-                      type="password"
-                      placeholder="Enter your password"
-                      className="pl-10"
-                    />
-                  </div>
+              {/* Password Input */}
+              <div className="space-y-2">
+                <Label htmlFor="password" className="text-base">
+                  Password
+                </Label>
+                <div className="relative">
+                  <Lock className="absolute left-3 top-1/2 -translate-y-1/2 text-gray-400 w-5 h-5" />
+                  <Input
+                    id="password"
+                    type="password"
+                    placeholder="Enter your password"
+                    className="pl-10 text-base py-6"
+                  />
                 </div>
+              </div>
 
-                <div className="flex items-center justify-between">
-                  <div className="flex items-center space-x-2">
-                    <Checkbox id="remember" />
-                    <Label htmlFor="remember">Remember me?</Label>
-                  </div>
-                  <a href="#" className="text-sm text-green-700 hover:underline">
-                    Forgot password?
-                  </a>
+              {/* Remember / Forgot */}
+              <div className="flex items-center justify-between text-base">
+                <div className="flex items-center space-x-2">
+                  <Checkbox id="remember" />
+                  <Label htmlFor="remember">Remember me?</Label>
                 </div>
+                <a href="#" className="text-green-700 hover:underline">
+                  Forgot password?
+                </a>
+              </div>
 
-                <Button className="w-full bg-green-700 hover:bg-green-800 text-white">
-                  Login
-                </Button>
+              {/* Login Button */}
+              <Button
+                type="submit"
+                className="w-full bg-green-700 hover:bg-green-800 text-white text-lg py-6"
+              >
+                Login
+              </Button>
 
-                <p className="text-center text-sm mt-2">
-                  New here?{" "}
-                  <a href="#" className="text-green-700 hover:underline">
-                    Create an account
-                  </a>
-                </p>
-              </form>
-            </CardContent>
-          </Card>
-        </div>
+              {/* Signup link */}
+              <p className="text-center text-base mt-4">
+                New here?{" "}
+                <a
+                  href="#"
+                  className="text-green-700 hover:underline font-semibold"
+                >
+                  Create an account
+                </a>
+              </p>
+            </form>
+          </CardContent>
+        </Card>
       </div>
     </div>
   );
