@@ -32,11 +32,10 @@ export default function LoginPage() {
         {/* Green overlay */}
         <div className="absolute inset-0 bg-green-900/60" />
         {/* Text content */}
-        <div className="relative z-10 p-14">
-          <h1 className="text-6xl font-extrabold tracking-wide">SDO-ACTS</h1>
-          <p className="text-2xl mt-3 leading-snug">
-            A Centralized Ticketing System for <br />
-            SDO Meycauayan
+        <div className="absolute bottom-10 left-10 z-20">
+          <h1 className="font-bold text-9xl leading-none">SDO-ACTS</h1>
+          <p className="text-2xl lg:text-4xl">
+            A Centralized Ticketing System for SDO Meycauayan
           </p>
         </div>
       </div>
