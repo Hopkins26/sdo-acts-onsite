@@ -33,8 +33,8 @@ export default function LoginPage() {
         <div className="absolute inset-0 bg-green-900/60" />
         {/* Text content */}
         <div className="absolute bottom-10 left-10 z-20">
-          <h1 className="font-bold text-9xl leading-none">SDO-ACTS</h1>
-          <p className="text-2xl lg:text-4xl">
+          <h1 className="font-bold text-8xl leading-none">SDO-ACTS</h1>
+          <p className="text-xl lg:text-3xl">
             A Centralized Ticketing System for SDO Meycauayan
           </p>
         </div>
