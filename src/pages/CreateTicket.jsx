@@ -32,10 +32,10 @@ export default function CreateTicket() {
 
       {/* Main */}
       <main className="flex flex-1 items-center justify-center bg-gray-50">
-        <div className="flex justify-center items-center gap-16 w-full">
+        <div className="flex justify-center items-center gap-7 w-[75%]">
           {/* Create Ticket Card */}
-          <Card className="w-[40%] h-[350px] text-center shadow-lg border border-gray-200 flex flex-col justify-between p-6">
-            <CardHeader className="flex flex-col items-center">
+          <Card className="flex-3 h-[350px] text-center shadow-lg border border-gray-200 flex flex-col justify-center p-6">
+            <CardHeader className="flex flex-col items-center mb-0">
               <div className="bg-green-100 p-5 rounded-full">
                 <Plus className="text-green-800 w-8 h-8" />
               </div>
@@ -50,7 +50,7 @@ export default function CreateTicket() {
             <CardContent className="flex justify-center">
               <Button
                 onClick={() => navigate("/ticket-form")}
-                className="bg-green-700 hover:bg-green-800 text-white font-semibold text-lg px-10 py-4 rounded-full w-[70%]"
+                className="bg-green-700 hover:bg-green-800 text-white font-semibold text-lg px-10 py-4 rounded-full w-[80%]"
               >
                 Create Ticket
               </Button>
@@ -58,16 +58,16 @@ export default function CreateTicket() {
           </Card>
 
           {/* Logout Card */}
-          <Card className="w-[40%] h-[350px] text-center shadow-lg border border-gray-200 flex flex-col justify-between p-6">
+          <Card className="flex-1 h-[350px] text-center shadow-lg border border-gray-200 flex flex-col justify-center p-6">
             <CardHeader className="flex flex-col items-center">
               <div className="bg-red-100 p-5 rounded-full">
                 <Power className="text-red-600 w-8 h-8" />
               </div>
               <CardTitle className="text-2xl font-bold mt-4 text-gray-800">
-                Are you sure you want to logout?
+                Logout
               </CardTitle>
-              <p className="text-gray-600 text-sm mt-2 text-center">
-                Note: You will need to log in again to access your account.
+              <p className="text-gray-600 text-base mt-2">
+                Log out of your account
               </p>
             </CardHeader>
 
@@ -75,7 +75,7 @@ export default function CreateTicket() {
               <Button
                 onClick={() => navigate("/login")}
                 variant="outline"
-                className="border border-red-600 text-red-600 hover:bg-red-100 font-semibold text-lg px-10 py-4 rounded-full w-[70%]"
+                className="border border-red-600 text-red-600 hover:bg-red-100 font-semibold text-lg px-10 py-4 rounded-full w-[80%]"
               >
                 Yes
               </Button>
