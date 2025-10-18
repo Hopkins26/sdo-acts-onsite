@@ -1,7 +1,7 @@
 import React from "react";
 import { Card, CardHeader, CardTitle, CardContent } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
-import { Plus } from "lucide-react";
+import { Plus, Power } from "lucide-react";
 import { useNavigate } from "react-router-dom";
 
 export default function CreateTicket() {
@@ -32,30 +32,56 @@ export default function CreateTicket() {
 
       {/* Main */}
       <main className="flex flex-1 items-center justify-center bg-gray-50">
-        <Card className="w-[42%] h-[42%] text-center shadow-lg border border-gray-200 flex flex-col justify-center">
-          <CardHeader>
-            <div className="flex justify-center">
+        <div className="flex justify-center items-center gap-16 w-full">
+          {/* Create Ticket Card */}
+          <Card className="w-[40%] h-[350px] text-center shadow-lg border border-gray-200 flex flex-col justify-between p-6">
+            <CardHeader className="flex flex-col items-center">
               <div className="bg-green-100 p-5 rounded-full">
                 <Plus className="text-green-800 w-8 h-8" />
               </div>
-            </div>
-            <CardTitle className="text-2xl font-bold mt-4">
-              Create Ticket
-            </CardTitle>
-            <p className="text-gray-600 text-base mt-2">
-              Submit service request
-            </p>
-          </CardHeader>
+              <CardTitle className="text-2xl font-bold mt-4">
+                Create Ticket
+              </CardTitle>
+              <p className="text-gray-600 text-base mt-2">
+                Submit service request
+              </p>
+            </CardHeader>
 
-          <CardContent className="mt-4">
-            <Button
-              onClick={() => navigate("/ticket-form")}
-              className="w-full bg-green-700 hover:bg-green-800 text-white font-semibold text-lg py-6 rounded-full"
-            >
-              Create Ticket
-            </Button>
-          </CardContent>
-        </Card>
+            <CardContent className="flex justify-center">
+              <Button
+                onClick={() => navigate("/ticket-form")}
+                className="bg-green-700 hover:bg-green-800 text-white font-semibold text-lg px-10 py-4 rounded-full w-[70%]"
+              >
+                Create Ticket
+              </Button>
+            </CardContent>
+          </Card>
+
+          {/* Logout Card */}
+          <Card className="w-[40%] h-[350px] text-center shadow-lg border border-gray-200 flex flex-col justify-between p-6">
+            <CardHeader className="flex flex-col items-center">
+              <div className="bg-red-100 p-5 rounded-full">
+                <Power className="text-red-600 w-8 h-8" />
+              </div>
+              <CardTitle className="text-2xl font-bold mt-4 text-gray-800">
+                Are you sure you want to logout?
+              </CardTitle>
+              <p className="text-gray-600 text-sm mt-2 text-center">
+                Note: You will need to log in again to access your account.
+              </p>
+            </CardHeader>
+
+            <CardContent className="flex justify-center">
+              <Button
+                onClick={() => navigate("/login")}
+                variant="outline"
+                className="border border-red-600 text-red-600 hover:bg-red-100 font-semibold text-lg px-10 py-4 rounded-full w-[70%]"
+              >
+                Yes
+              </Button>
+            </CardContent>
+          </Card>
+        </div>
       </main>
     </div>
   );

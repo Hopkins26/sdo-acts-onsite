@@ -101,17 +101,6 @@ export default function LoginPage() {
               >
                 Login
               </Button>
-
-              {/* Signup link */}
-              <p className="text-center text-base mt-4">
-                New here?{" "}
-                <a
-                  href="#"
-                  className="text-green-700 hover:underline font-semibold"
-                >
-                  Create an account
-                </a>
-              </p>
             </form>
           </CardContent>
         </Card>

@@ -1,27 +1,29 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import { Button } from "@/components/ui/button";
 import { Card, CardHeader, CardTitle, CardContent } from "@/components/ui/card";
 import { useNavigate } from "react-router-dom";
+import { Check } from "lucide-react";
 
 export default function TicketForm() {
   const navigate = useNavigate();
 
-  // State for form fields
+  // States for form logic
   const [department, setDepartment] = useState("");
   const [serviceCategory, setServiceCategory] = useState("");
   const [priority, setPriority] = useState("-");
+  const [subject, setSubject] = useState("");
+  const [submitted, setSubmitted] = useState(false);
+  const [countdown, setCountdown] = useState(10);
 
   // Handle Department change
   const handleDepartmentChange = (e) => {
     const selectedDept = e.target.value;
     setDepartment(selectedDept);
-
-    // Reset service category & priority when department changes
     setServiceCategory("");
     setPriority("-");
   };
 
-  // Handle Service Category change and set auto-priority
+  // Handle Service Category change
   const handleServiceCategoryChange = (e) => {
     const selected = e.target.value;
     setServiceCategory(selected);
@@ -35,6 +37,62 @@ export default function TicketForm() {
     }
   };
 
+  // Handle Submit
+  const handleSubmit = (e) => {
+    e.preventDefault();
+
+    // Prevent submit if any field is empty
+    if (!department || !serviceCategory || !subject.trim()) {
+      return; // Simply stop submission (same behavior as required)
+    }
+
+    setSubmitted(true);
+  };
+
+  // Auto redirect after 10 seconds
+  useEffect(() => {
+    if (submitted) {
+      const timer = setInterval(() => {
+        setCountdown((prev) => {
+          if (prev === 1) {
+            clearInterval(timer);
+            navigate("/create-ticket");
+          }
+          return prev - 1;
+        });
+      }, 1000);
+      return () => clearInterval(timer);
+    }
+  }, [submitted, navigate]);
+
+  // ✅ Success Screen
+  if (submitted) {
+    return (
+      <div className="min-h-screen bg-gray-50 flex flex-col items-center justify-center">
+        <Card className="w-[50%] text-center p-10 shadow-lg rounded-3xl">
+          <div className="flex justify-center mb-6">
+            <div className="bg-yellow-100 p-8 rounded-full">
+              <Check className="text-black w-12 h-12" />
+            </div>
+          </div>
+          <h2 className="text-2xl font-bold mb-6">
+            Your ticket has been placed!
+          </h2>
+          <Button
+            onClick={() => navigate("/create-ticket")}
+            className="bg-green-300 hover:bg-green-400 text-black text-lg font-semibold px-8 py-4 rounded-full"
+          >
+            Thank you
+          </Button>
+          <p className="text-gray-500 text-sm mt-4">
+            Redirecting in {countdown} seconds...
+          </p>
+        </Card>
+      </div>
+    );
+  }
+
+  // 🧾 Ticket Form (default)
   return (
     <div className="min-h-screen bg-gray-50 flex flex-col">
       {/* Navbar */}
@@ -66,7 +124,7 @@ export default function TicketForm() {
           </CardHeader>
 
           <CardContent>
-            <form className="grid grid-cols-2 gap-4">
+            <form className="grid grid-cols-2 gap-4" onSubmit={handleSubmit}>
               {/* Department */}
               <div className="col-span-2">
                 <label className="block text-sm font-semibold mb-1">
@@ -75,6 +133,7 @@ export default function TicketForm() {
                 <select
                   value={department}
                   onChange={handleDepartmentChange}
+                  required
                   className="w-full border rounded-lg p-2"
                 >
                   <option value="">Select Department</option>
@@ -92,6 +151,7 @@ export default function TicketForm() {
                 <select
                   value={serviceCategory}
                   onChange={handleServiceCategoryChange}
+                  required
                   className="w-full border rounded-lg p-2"
                 >
                   <option value="">Select Category</option>
@@ -101,11 +161,16 @@ export default function TicketForm() {
 
               {/* Subject */}
               <div className="col-span-2">
-                <label className="block text-sm font-semibold mb-1">Subject</label>
+                <label className="block text-sm font-semibold mb-1">
+                  Subject
+                </label>
                 <input
                   type="text"
+                  value={subject}
+                  onChange={(e) => setSubject(e.target.value)}
                   placeholder="Brief description of your issue"
                   className="w-full border rounded-lg p-2"
+                  required
                 />
               </div>
 
@@ -121,7 +186,7 @@ export default function TicketForm() {
                 />
               </div>
 
-              {/* Priority Level (auto updated) */}
+              {/* Priority Level */}
               <div>
                 <label className="block text-sm font-semibold mb-1">
                   Priority Level
