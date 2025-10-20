@@ -6,9 +6,9 @@ import { Card, CardContent } from "@/components/ui/card";
 
 const LogoutPage = () => {
   const navigate = useNavigate();
-  const [countdown, setCountdown] = useState(10);
+  const [countdown, setCountdown] = useState(30); // ⏱️ Start at 30 seconds
 
-  // Auto logout after 10 seconds
+  // Auto logout after 30 seconds
   useEffect(() => {
     const timer = setInterval(() => {
       setCountdown((prev) => {
@@ -18,7 +18,7 @@ const LogoutPage = () => {
         }
         return prev - 1;
       });
-    }, 1000);
+    }, 1000); // 🔁 Runs every second (not 10s)
     return () => clearInterval(timer);
   }, []);
 
