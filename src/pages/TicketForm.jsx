@@ -2,12 +2,20 @@ import React, { useState, useEffect } from "react";
 import { Button } from "@/components/ui/button";
 import { Card, CardHeader, CardTitle, CardContent } from "@/components/ui/card";
 import { useNavigate } from "react-router-dom";
-import { Check } from "lucide-react";
+import {
+  Check,
+  Building2,
+  ClipboardList,
+  BookText,
+  FileText,
+  AlertCircle,
+  Send,
+  ArrowLeft,
+} from "lucide-react";
 
 export default function TicketForm() {
   const navigate = useNavigate();
 
-  // States for form logic
   const [department, setDepartment] = useState("");
   const [serviceCategory, setServiceCategory] = useState("");
   const [priority, setPriority] = useState("-");
@@ -43,7 +51,7 @@ export default function TicketForm() {
 
     // Prevent submit if any field is empty
     if (!department || !serviceCategory || !subject.trim()) {
-      return; // Simply stop submission (same behavior as required)
+      return;
     }
 
     setSubmitted(true);
@@ -56,7 +64,7 @@ export default function TicketForm() {
         setCountdown((prev) => {
           if (prev === 1) {
             clearInterval(timer);
-            navigate("/create-ticket");
+            navigate("/logout"); // 🔁 Changed route to LogoutPage.jsx
           }
           return prev - 1;
         });
@@ -79,7 +87,7 @@ export default function TicketForm() {
             Your ticket has been placed!
           </h2>
           <Button
-            onClick={() => navigate("/create-ticket")}
+            onClick={() => navigate("/logout")} // 🔁 Changed route to LogoutPage.jsx
             className="bg-green-300 hover:bg-green-400 text-black text-lg font-semibold px-8 py-4 rounded-full"
           >
             Thank you
@@ -127,7 +135,8 @@ export default function TicketForm() {
             <form className="grid grid-cols-2 gap-4" onSubmit={handleSubmit}>
               {/* Department */}
               <div className="col-span-2">
-                <label className="block text-sm font-semibold mb-1">
+                <label className="flex items-center gap-2 text-sm font-semibold mb-1">
+                  <Building2 className="w-4 h-4 text-gray-700" />
                   Department
                 </label>
                 <select
@@ -145,7 +154,8 @@ export default function TicketForm() {
 
               {/* Service Category */}
               <div className="col-span-2">
-                <label className="block text-sm font-semibold mb-1">
+                <label className="flex items-center gap-2 text-sm font-semibold mb-1">
+                  <ClipboardList className="w-4 h-4 text-gray-700" />
                   Service Category
                 </label>
                 <select
@@ -154,14 +164,15 @@ export default function TicketForm() {
                   required
                   className="w-full border rounded-lg p-2"
                 >
-                  <option value="">Select Category</option>
+                  <option value="">Select Service</option>
                   <option value="Repair">Repair</option>
                 </select>
               </div>
 
               {/* Subject */}
               <div className="col-span-2">
-                <label className="block text-sm font-semibold mb-1">
+                <label className="flex items-center gap-2 text-sm font-semibold mb-1">
+                  <BookText className="w-4 h-4 text-gray-700" />
                   Subject
                 </label>
                 <input
@@ -176,7 +187,8 @@ export default function TicketForm() {
 
               {/* Additional Info */}
               <div>
-                <label className="block text-sm font-semibold mb-1">
+                <label className="flex items-center gap-2 text-sm font-semibold mb-1">
+                  <FileText className="w-4 h-4 text-gray-700" />
                   Additional Information
                 </label>
                 <input
@@ -188,7 +200,8 @@ export default function TicketForm() {
 
               {/* Priority Level */}
               <div>
-                <label className="block text-sm font-semibold mb-1">
+                <label className="flex items-center gap-2 text-sm font-semibold mb-1">
+                  <AlertCircle className="w-4 h-4 text-gray-700" />
                   Priority Level
                 </label>
                 <input
@@ -205,15 +218,15 @@ export default function TicketForm() {
                   type="button"
                   onClick={() => navigate("/create-ticket")}
                   variant="outline"
-                  className="w-40 border-2 border-green-700 text-green-700 rounded-full"
+                  className="w-40 border-2 border-green-700 text-green-700 rounded-full flex items-center justify-center gap-2"
                 >
-                  Back
+                  <ArrowLeft className="w-4 h-4" /> Back
                 </Button>
                 <Button
                   type="submit"
-                  className="w-40 bg-green-700 hover:bg-green-800 text-white rounded-full"
+                  className="w-40 bg-green-700 hover:bg-green-800 text-white rounded-full flex items-center justify-center gap-2"
                 >
-                  Submit
+                  <Send className="w-4 h-4" /> Submit
                 </Button>
               </div>
             </form>
