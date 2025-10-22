@@ -1,8 +1,14 @@
 import React from "react";
 import { Card, CardHeader, CardTitle, CardContent } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
-import { Plus, Power } from "lucide-react";
+import { Plus, Power, LogOut } from "lucide-react";
 import { useNavigate } from "react-router-dom";
+import {
+  DropdownMenu,
+  DropdownMenuContent,
+  DropdownMenuItem,
+  DropdownMenuTrigger,
+} from "@/components/ui/dropdown-menu";
 
 export default function CreateTicket() {
   const navigate = useNavigate();
@@ -19,15 +25,27 @@ export default function CreateTicket() {
           />
           <h1 className="text-2xl font-bold text-green-800">Home</h1>
         </div>
-        <div className="flex items-center space-x-4">
-          <button className="p-2 rounded-full border hover:bg-gray-100">
-            <img
-              src="https://cdn-icons-png.flaticon.com/512/847/847969.png"
-              alt="User Icon"
-              className="w-6 h-6"
-            />
-          </button>
-        </div>
+
+        {/* Avatar Dropdown */}
+        <DropdownMenu>
+          <DropdownMenuTrigger asChild>
+            <button className="p-2 rounded-full border hover:bg-gray-100">
+              <img
+                src="https://cdn-icons-png.flaticon.com/512/847/847969.png"
+                alt="User Icon"
+                className="w-8 h-8"
+              />
+            </button>
+          </DropdownMenuTrigger>
+          <DropdownMenuContent align="end" className="w-40">
+            <DropdownMenuItem
+              onClick={() => navigate("/login")}
+              className="cursor-pointer text-red-600"
+            >
+              <LogOut className="w-4 h-4 mr-2" /> Logout
+            </DropdownMenuItem>
+          </DropdownMenuContent>
+        </DropdownMenu>
       </header>
 
       {/* Main */}
@@ -36,7 +54,10 @@ export default function CreateTicket() {
           {/* Create Ticket Card */}
           <Card className="flex-3 h-[350px] text-center shadow-lg border border-gray-200 flex flex-col justify-center p-6">
             <CardHeader className="flex flex-col items-center mb-0">
-              <div className="bg-green-100 p-5 rounded-full">
+              <div
+                onClick={() => navigate("/ticket-form")}
+                className="bg-green-100 p-5 rounded-full cursor-pointer hover:bg-green-200 transition"
+              >
                 <Plus className="text-green-800 w-8 h-8" />
               </div>
               <CardTitle className="text-2xl font-bold mt-4">
@@ -60,7 +81,10 @@ export default function CreateTicket() {
           {/* Logout Card */}
           <Card className="flex-1 h-[350px] text-center shadow-lg border border-gray-200 flex flex-col justify-center p-6">
             <CardHeader className="flex flex-col items-center">
-              <div className="bg-red-100 p-5 rounded-full">
+              <div
+                onClick={() => navigate("/login")}
+                className="bg-red-100 p-5 rounded-full cursor-pointer hover:bg-red-200 transition"
+              >
                 <Power className="text-red-600 w-8 h-8" />
               </div>
               <CardTitle className="text-2xl font-bold mt-4 text-gray-800">
