@@ -39,15 +39,6 @@ const LogoutPage = () => {
           />
           <h1 className="text-2xl font-bold text-green-800">Home</h1>
         </div>
-        <div className="flex items-center space-x-4">
-          <button className="p-2 rounded-full border hover:bg-gray-100">
-            <img
-              src="https://cdn-icons-png.flaticon.com/512/847/847969.png"
-              alt="User Icon"
-              className="w-6 h-6"
-            />
-          </button>
-        </div>
       </header>
 
       {/* Main Content */}
@@ -56,11 +47,8 @@ const LogoutPage = () => {
           <CardContent className="flex flex-col items-center">
             <Power className="text-red-500 w-20 h-20 mb-6" />
             <h2 className="text-2xl font-bold mb-3">
-              Are you sure you want to logout?
+              Logging Out
             </h2>
-            <p className="text-sm text-gray-500 mb-2">
-              Note: You will need to log in again to access your account.
-            </p>
             <p className="text-xs text-gray-400 mb-8">
               Auto logging out in {countdown}s...
             </p>
