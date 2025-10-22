@@ -12,6 +12,7 @@ import {
   Send,
   ArrowLeft,
 } from "lucide-react";
+import AppHeader from "@/components/custom/AppHeader";
 
 export default function TicketForm() {
   const navigate = useNavigate();
@@ -104,26 +105,7 @@ export default function TicketForm() {
   return (
     <div className="min-h-screen bg-gray-50 flex flex-col">
       {/* Navbar */}
-      <header className="w-full bg-white shadow-sm flex items-center justify-between px-8 py-4 border-b">
-        <div className="flex items-center space-x-3">
-          <img
-            src="/src/assets/SDO logo.png"
-            alt="SDO Logo"
-            className="h-12 w-12"
-          />
-          <h1 className="text-2xl font-bold text-green-800">Home</h1>
-        </div>
-        <div className="flex items-center space-x-4">
-          <button className="p-2 rounded-full border hover:bg-gray-100">
-            <img
-              src="https://cdn-icons-png.flaticon.com/512/847/847969.png"
-              alt="User Icon"
-              className="w-6 h-6"
-            />
-          </button>
-        </div>
-      </header>
-
+      <AppHeader />
       {/* Form Section */}
       <main className="flex flex-1 justify-center items-center">
         <Card className="w-[70%] max-w-4xl p-6 shadow-lg border border-gray-200">

@@ -3,12 +3,8 @@ import { Card, CardHeader, CardTitle, CardContent } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
 import { Plus, Power, LogOut } from "lucide-react";
 import { useNavigate } from "react-router-dom";
-import {
-  DropdownMenu,
-  DropdownMenuContent,
-  DropdownMenuItem,
-  DropdownMenuTrigger,
-} from "@/components/ui/dropdown-menu";
+
+import AppHeader from "@/components/custom/AppHeader";
 
 export default function CreateTicket() {
   const navigate = useNavigate();
@@ -16,38 +12,7 @@ export default function CreateTicket() {
   return (
     <div className="min-h-screen bg-gray-50 flex flex-col">
       {/* Navbar */}
-      <header className="w-full bg-white shadow-sm flex items-center justify-between px-8 py-4 border-b">
-        <div className="flex items-center space-x-3">
-          <img
-            src="/src/assets/SDO logo.png"
-            alt="SDO Logo"
-            className="h-12 w-12"
-          />
-          <h1 className="text-2xl font-bold text-green-800">Home</h1>
-        </div>
-
-        {/* Avatar Dropdown */}
-        <DropdownMenu>
-          <DropdownMenuTrigger asChild>
-            <button className="p-2 rounded-full border hover:bg-gray-100">
-              <img
-                src="https://cdn-icons-png.flaticon.com/512/847/847969.png"
-                alt="User Icon"
-                className="w-8 h-8"
-              />
-            </button>
-          </DropdownMenuTrigger>
-          <DropdownMenuContent align="end" className="w-40">
-            <DropdownMenuItem
-              onClick={() => navigate("/login")}
-              className="cursor-pointer text-red-600"
-            >
-              <LogOut className="w-4 h-4 mr-2" /> Logout
-            </DropdownMenuItem>
-          </DropdownMenuContent>
-        </DropdownMenu>
-      </header>
-
+      <AppHeader />
       {/* Main */}
       <main className="flex flex-1 items-center justify-center bg-gray-50">
         <div className="flex justify-center items-center gap-7 w-[75%]">
